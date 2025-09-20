@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const nombre = ref('')
 const registrado = ref(false)
 
@@ -18,7 +20,7 @@ function registrarCliente() {
     <div class="wrapper">
         <div class="contenedor">
             <div v-if="!registrado">
-                <h2 class="titulo">Registro Rápido de Clientes</h2>
+                <h2 class="titulo">Registro de Clientes</h2>
                 <input v-model="nombre" type="text" placeholder="Ingrese el nombre" class="campo" />
                 <button @click="registrarCliente" class="btn btn-registrar">
                     Registrar
@@ -26,10 +28,8 @@ function registrarCliente() {
             </div>
 
             <div v-else>
-                <h2 class="bienvenida">¡Bienvenido, {{ nombre }}! 🎉</h2>
-                <button @click="registrado = false" class="btn btn-cancelar">
-                    Registrar otro cliente
-                </button>
+                <h2 class="bienvenida">¡Bienvenido, {{ nombre }}!</h2>
+                <button @click="router.push('/lista')">Continuar</button>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@ function registrarCliente() {
 
 <style scoped>
 html, body {
-  height: 100%;              /* importante para que wrapper tenga alto completo */
+  height: 100%;
   margin: 0;
 }
 
