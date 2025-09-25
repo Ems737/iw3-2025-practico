@@ -3,6 +3,7 @@
 import { ref, computed } from "vue";
 import Carrito from './components/carrito.vue';
 import Productos from './components/productos.vue';
+import Home from "./components/Home.vue";
 
 //creo el arreglo de Productos carrito
 const carrito = ref([]);
@@ -43,6 +44,7 @@ const quitarDelCarrito = (producto) => {
 <template>
   <main>
     <!--<RouterView/>-->
+    <Home></Home>
     <Productos @add-to-cart="agregarAlCarrito" />
 
     <Carrito 
