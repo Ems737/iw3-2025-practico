@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/views/Home.vue";
-import Movies from "@/views/Movies.vue";
-import BusquedaProductos from "@/views/busquedaProductos.vue";
+import Home from "@/components/Home.vue";
+import Carrito from "@/components/carrito.vue";
+import BusquedaProductos from "@/components/productos.vue";
 
 
 const router = createRouter({
@@ -13,9 +13,9 @@ const router = createRouter({
             component: Home
         },
         {
-            path: "/movies",
-            name: "movies",
-            component: Movies
+            path: "/carrito",
+            name: "carrito",
+            component: Carrito
         },
         {
             path: "/lista",

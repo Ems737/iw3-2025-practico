@@ -6,9 +6,8 @@
 
         <nav>
             <ul class="nav-list">
-                <!--<li><router-link class="link" :to="{ name: 'home' }">Home</router-link></li>-->
                 <li><router-link class="link" :to="{ name: 'lista' }">Lista</router-link></li>
-                <li><router-link class="link" :to="{ name: 'movies' }">Movies</router-link></li>
+                <li><router-link class="link" :to="{ name: 'carrito' }">Carrito de compras</router-link></li>
             </ul>
         </nav>
     </header>
