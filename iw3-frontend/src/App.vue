@@ -1,58 +1,28 @@
 <script setup>
-//import { RouterView } from 'vue-router';
-import { ref, computed } from "vue";
-import Carrito from './components/carrito.vue';
-import Productos from './components/productos.vue';
-import Home from "./components/Home.vue";
-
-//creo el arreglo de Productos carrito
-const carrito = ref([]);
-
-// Agregar productos al carrito
-const agregarAlCarrito = (producto) => {
-//Guardamos en "item" el objeto producto si p.id === idProducto
-  const item = carrito.value.find(p => p.id === producto.id);
-
-  if (item) {
-    item.cantidad++;
-  } else {
-    //Agrego el nuevo producto mediante el operador de propagacion "..."
-    carrito.value.push({ ...producto, cantidad: 1});
-  }
-};
-
-// Quitar producto del carrito
-const quitarDelCarrito = (producto) => {
-  const item = carrito.value.find(p => p.id === producto.id);
-  if (item) {
-    item.cantidad--;
-    if (item.cantidad <= 0) {
-    //Guardo en carrito todos los productos cuyo p.id !== producto.id
-      carrito.value = carrito.value.filter(p => p.id !== producto.id);
-    }
-  }
-};
-
-// Computed para el total
-  const total = computed(() =>
-//Por cada elemento "p", actualizamos la variable sum = sum + (p.precio * p.cantidad)
-  carrito.value.reduce((sum, p) => sum + p.precio * p.cantidad, 0)
-);
-
+import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <main>
-    <!--<RouterView/>-->
-    <Home></Home>
-    <Productos @add-to-cart="agregarAlCarrito" />
+  <div>
+    <nav>
+      <RouterLink to="/" active-class="activo">Inicio</RouterLink> |
+      <RouterLink to="/productos" active-class="activo">Productos</RouterLink> |
+      <RouterLink to="/clientes" active-class="activo">Clientes</RouterLink> |
+      <RouterLink to="/carrito" active-class="activo">Carrito</RouterLink>
+    </nav>
 
-    <Carrito 
-    :carrito="carrito" 
-    :total="total"
-    @quitar="quitarDelCarrito"
-    @agregar="agregarAlCarrito" />
-  </main>
+    <hr />
+
+    <RouterView />
+  </div>
 </template>
 
-<style></style>
+<style>
+nav {
+  margin-bottom: 20px;
+}
+.activo {
+  font-weight: bold;
+  color: green;
+}
+</style>
